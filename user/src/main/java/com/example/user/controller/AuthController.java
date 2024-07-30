@@ -1,46 +1,32 @@
 package com.example.user.controller;
 
-import com.example.user.model.AuthenticationRequest;
-import com.example.user.model.AuthenticationResponse;
-import com.example.user.model.User;
-import com.example.user.service.UserService;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.example.user.dto.JwtAuthenticationResponse;
+import com.example.user.dto.SignInRequest;
+import com.example.user.dto.SignUpRequest;
+import com.example.user.service.AuthenticationService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
+import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
+@RequiredArgsConstructor
+@Tag(name = "Аутентификация")
 public class AuthController {
-    @Autowired
-    private UserService userService;
+    private final AuthenticationService authenticationService;
 
-    @Autowired
-    private AuthenticationManager authenticationManager;
-
-    @Autowired
-    private PasswordEncoder passwordEncoder;
-
-    @PostMapping("/register")
-    public ResponseEntity<User> register(@RequestBody User user) {
-        User registeredUser = userService.register(user);
-        return ResponseEntity.ok(registeredUser);
+    @Operation(summary = "Регистрация пользователя")
+    @PostMapping("/signup")
+    public JwtAuthenticationResponse signUp(@RequestBody @Valid SignUpRequest request) {
+        return authenticationService.signUp(request);
     }
 
-    @PostMapping("/login")
-    public ResponseEntity<AuthenticationResponse> login(@RequestBody AuthenticationRequest authRequest) {
-        try {
-            Authentication authentication = authenticationManager.authenticate(
-                    new UsernamePasswordAuthenticationToken(authRequest.getLogin(), authRequest.getPassword())
-            );
-            String token = "generated-jwt-token";
-            return ResponseEntity.ok(new AuthenticationResponse(token));
-        } catch (AuthenticationException e) {
-            return ResponseEntity.status(401).build();
-        }
+    @Operation(summary = "Авторизация пользователя")
+    @PostMapping("/signin")
+    public JwtAuthenticationResponse signIn(@RequestBody @Valid SignInRequest request) {
+        return authenticationService.signIn(request);
     }
 }
