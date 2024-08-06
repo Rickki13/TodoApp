@@ -10,10 +10,13 @@ public class Logging {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @Column(name = "username")
     private String username;
     @JsonFormat(pattern = "dd.MM.yyyy HH:mm")
     @DateTimeFormat(pattern = "dd.MM.yyyy HH:mm")
     private LocalDateTime timestamp;
+    @Column(name = "action")
     private String action;
+    @Column(name = "details")
     private String details;
 }

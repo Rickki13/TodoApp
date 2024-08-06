@@ -3,7 +3,6 @@ package com.example.logging.controller;
 import com.example.logging.model.Logging;
 import com.example.logging.service.LoggingService;
 import lombok.RequiredArgsConstructor;
-import org.apache.hc.client5.http.auth.BearerToken;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

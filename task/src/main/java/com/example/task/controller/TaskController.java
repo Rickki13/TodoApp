@@ -1,8 +1,6 @@
 package com.example.task.controller;
 
 import com.example.task.model.Task;
-import com.example.task.model.User;
-import com.example.task.service.JwtService;
 import com.example.task.service.TaskService;
 import com.example.task.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
@@ -87,10 +85,4 @@ public class TaskController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
     }
-
-//    @Operation(summary = "Получение задач по пользователю")
-//    @GetMapping("/user/{userId}")
-//    public ResponseEntity<User> getUserById(@PathVariable Long userId) {
-//        return ResponseEntity.ok(taskService.getUserById(userId));
-//    }
 }

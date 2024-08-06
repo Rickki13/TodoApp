@@ -105,7 +105,5 @@ public class TaskService {
     public List<Task> getActiveTasks() {
         return taskRepository.findByStatus(Status.IN_PROGRESS);
     }
-//    public User getUserById(Long userId) {
-//        return restTemplate.getForObject()
-//    }
+
 }

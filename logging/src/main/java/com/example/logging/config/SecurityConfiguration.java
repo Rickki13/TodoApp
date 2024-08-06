@@ -44,7 +44,6 @@ public class SecurityConfiguration {
                     corsConfiguration.setAllowCredentials(true);
                     return corsConfiguration;
                 }))
-                // Настройка доступа к конечным точкам
                 .authorizeHttpRequests(request -> request
                         // * - 1 уровень вложенности, ** - любое количество уровней вложенности
                         .requestMatchers("/logs/**", "/logs").permitAll()

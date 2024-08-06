@@ -19,21 +19,15 @@ import java.util.List;
 public class AdminController {
     private final UserService service;
 
-    @GetMapping("/get-admin")
-    @Operation(summary = "Получить роль ADMIN (для демонстрации)")
-    public void getAdmin() {
-        service.getAdmin();
-    }
-
     @GetMapping("/logs/{username}")
-    @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN")
+    @Operation(summary = "Получение логов пользователя")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Logging> getUserLogs(@PathVariable String username) {
         return service.getUserLogs(username);
     }
 
     @GetMapping("/period")
-    @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN")
+    @Operation(summary = "Получение всех логов за период")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Logging> getLogsByPeriod(
             @RequestParam @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) LocalDateTime start,
@@ -42,7 +36,7 @@ public class AdminController {
     }
 
     @GetMapping("/user-period")
-    @Operation(summary = "Доступен только авторизованным пользователям с ролью ADMIN")
+    @Operation(summary = "Получение всех логов пользователя за период")
     @PreAuthorize("hasRole('ADMIN')")
     public List<Logging> getLogsByUserAndPeriod(
             @RequestParam String username,

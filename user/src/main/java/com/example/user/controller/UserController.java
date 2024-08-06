@@ -24,4 +24,10 @@ public class UserController {
        return service.getByUsername(username);
     }
 
+    @GetMapping("/get-admin")
+    @Operation(summary = "Получить роль ADMIN (для демонстрации)")
+    public void getAdmin() {
+        service.getAdmin();
+    }
+
 }
