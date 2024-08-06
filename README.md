@@ -1,5 +1,7 @@
 JDBC URL: jdbc:h2:file:/data/testdb
+<p>
 User Name: sa
+<p>
 Password: password
 
 Диаграмма сервисов
