@@ -4,6 +4,8 @@ User Name: sa
 <p>
 Password: password
 
+Набор тестов Postman: Todo list.postman_collection
+
 Диаграмма сервисов
 ![Todo list](https://github.com/user-attachments/assets/e6d39c45-d190-499f-9222-e3e61667f8d4)
 
