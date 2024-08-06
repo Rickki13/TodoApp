@@ -1,3 +1,7 @@
+JDBC URL: jdbc:h2:file:/data/testdb
+User Name: sa
+Password: password
+
 Диаграмма сервисов
 ![Todo list](https://github.com/user-attachments/assets/e6d39c45-d190-499f-9222-e3e61667f8d4)
 
